@@ -49,8 +49,9 @@ stages:
       ACR_NAME: 'RA ACR SC'
       serviceName: 'usernotification-service'
   - template: "templates/Stage-Deploy-template"
-  
-steps:
+jobs:
+  - job: DockerLogin  
+    steps:
     - script: echo Hello, world!
       displayName: 'Run a one-line script'
 
