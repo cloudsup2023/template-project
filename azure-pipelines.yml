@@ -44,18 +44,15 @@ variables:
   Service: '$(Build.Repository.Name)'
  
 stages:
-  - template: templates/Stage-Build-template.yml
-    parameters: 
+  - stage: Build
+  - template: "stage-build-template.yml"
+    parameters:
       ACR_NAME: 'RA ACR SC'
       serviceName: 'usernotification-service'
-  - template: "templates/Stage-Deploy-template"
-jobs:
-  - job: DockerLogin  
-    steps:
-    - script: echo Hello, world!
-      displayName: 'Run a one-line script'
 
-    - script: |
-        echo Add other tasks to build, test, and deploy your project.
-        echo See https://aka.ms/yaml
-        displayName: 'Run a multi-line script'
+  - template: Stage-Deploy-template.yml
+  
+
+
+
+
