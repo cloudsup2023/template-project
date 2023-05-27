@@ -9,10 +9,15 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+# a regular variable
+- name: branch
+  value: 'devops'
+
 jobs:
 - job: TemplateParamPass
 
   steps:
   - template: test.yml
     parameters:
-      branchName: devops
+      branchName: $(branch)
