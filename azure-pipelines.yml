@@ -9,50 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-resources:
-  repositories:
-  - repository: Dependency
-    type: git
-    name: 'javaCode'
-    ref: 'main'
-  - repository: MainCode
-    type: git
-    name: 'CFT'
-    ref: 'main'  
- 
-parameters:
-  - name: Namespace
-    displayName: Namespace to Deploy
-    type: string
-    values:
-      - devops
-      - hotfix
-      - preprod
-      - uattest
-    default: devops
+jobs:
+- job: foo
 
- 
-variables:
-  ACR_NAME: 'RA ACR SC'
-  IMAGE_REF: 'usernotification-service'
-  CODE_REPO: 'usernotification-service'
-  DEP_REPO: 'applib'
-  CODE_DIR: '$(Build.SourcesDirectory)/usernotification-service'
-  DEP_DIR: '$(Build.SourcesDirectory)/applib'
-  imageTag: '$(Build.BuildId)'
-  Env: ${{ parameters.Namespace }}
-  Service: '$(Build.Repository.Name)'
- 
-stages:
-  - stage: Build
-  - template: "stage-build-template.yml"
+  steps:
+  - template: foo.yml
     parameters:
-      ACR_NAME: 'RA ACR SC'
-      serviceName: 'usernotification-service'
-
-  - template: Stage-Deploy-template.yml
-  
-
-
-
-
+      FOO: bar
