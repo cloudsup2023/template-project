@@ -1,2 +1,4 @@
 steps:
-- script: "echo ${{ parameters.branchName }}"
+- script: |
+    echo "branch name"
+    ${{ parameters.branchName }}
