@@ -10,9 +10,9 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-- job: foo
+- job: TemplateParamPass
 
   steps:
-  - template: foo.yml
+  - template: test.yml
     parameters:
-      FOO: bar
+      branchName: devops
